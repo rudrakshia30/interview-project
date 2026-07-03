@@ -32,3 +32,18 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"]
 )
+
+app.include_router(questions_router)
+
+@app.get("/")
+def root():
+    return {
+        "message": "AI Interview API is running",
+        "version": 1
+    }
+
+@app.get("/health")
+def health_check():
+    return {
+        "status": "healthy"
+    }
