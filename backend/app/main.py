@@ -19,3 +19,8 @@ frontend_origin = os.getenv(
     "FRONTEND_ORIGIN",
     "http://localhost:5173"
 )
+
+allowed_origins = [
+    frontend_origin,
+    "http://127.0.0.1:5173"
+]
