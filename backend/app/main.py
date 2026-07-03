@@ -1,3 +1,4 @@
+import os
 from dotenv import load_dotenv
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -12,4 +13,9 @@ app = FastAPI(
         "role-specific interview questions."
     ),
     version="1.0.0"
+)
+
+frontend_origin = os.getenv(
+    "FRONTEND_ORIGIN",
+    "http://localhost:5173"
 )
