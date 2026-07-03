@@ -2,17 +2,9 @@ from typing import Literal
 from pydantic import BaseModel, Field
 
 class QuestionGenerationRequest(BaseModel):
-    role: str = Field(
-        ...,
-        min_length=2,
-        max_length=100
-    )
+    role: str = Field(...,min_length=2,max_length=100)
 
-    difficulty: Literal[
-        "beginner",
-        "intermediate",
-        "advanced"
-    ] = "intermediate"
+    difficulty: Literal["beginner","intermediate","advanced"] = "intermediate"
 
     question_count: int = Field(
         default=5,
