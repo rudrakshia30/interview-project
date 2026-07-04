@@ -83,6 +83,7 @@ function App() {
       ...session,
       currentQuestionIndex: nextIndex
     });
+    
   }
 
   function handleRestartInterview() {
