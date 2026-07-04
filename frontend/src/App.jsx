@@ -45,11 +45,7 @@ function App() {
     setError("");
 
     try {
-      const result = await generateQuestions({
-        role,
-        difficulty,
-        questionCount
-      });
+      const result = await generateQuestions({role,difficulty,questionCount});
 
       const newSession = {
         role: result.role,
@@ -60,14 +56,19 @@ function App() {
       };
 
       saveSession(newSession);
-    } catch (requestError) {
+    }
+
+    catch (requestError) {
       setError(
         requestError.message ||
         "The interview could not be started."
       );
-    } finally {
+    }
+
+    finally {
       setLoading(false);
     }
+    
   }
 
   function handleNextQuestion() {
