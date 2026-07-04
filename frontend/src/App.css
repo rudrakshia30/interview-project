@@ -252,3 +252,14 @@ h1 {
     width: 100%;
   }
 }
+
+@media (max-width: 600px) {
+  .header-buttons {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .header-buttons button {
+    width: 100%;
+  }
+}
