@@ -21,10 +21,13 @@ function readSavedSession() {
     }
 
     return parsedSession;
-  } catch {
+  }
+
+  catch {
     localStorage.removeItem(STORAGE_KEY);
     return null;
   }
+  
 }
 
 
