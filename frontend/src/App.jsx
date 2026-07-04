@@ -37,11 +37,7 @@ function App() {
 
   function saveSession(nextSession) {
     setSession(nextSession);
-
-    localStorage.setItem(
-      STORAGE_KEY,
-      JSON.stringify(nextSession)
-    );
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(nextSession));
   }
 
 
