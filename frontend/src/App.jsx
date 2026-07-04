@@ -27,20 +27,13 @@ function readSavedSession() {
     localStorage.removeItem(STORAGE_KEY);
     return null;
   }
-  
+
 }
 
-
 function App() {
-  const [session, setSession] =
-    useState(readSavedSession);
-
-  const [loading, setLoading] =
-    useState(false);
-
-  const [error, setError] =
-    useState("");
-
+  const [session, setSession] = useState(readSavedSession);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
   function saveSession(nextSession) {
     setSession(nextSession);
