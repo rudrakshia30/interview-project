@@ -6,11 +6,9 @@ import "./App.css";
 
 const STORAGE_KEY = "interview_v1_session";
 
-
 function readSavedSession() {
   try {
-    const savedSession =
-      localStorage.getItem(STORAGE_KEY);
+    const savedSession = localStorage.getItem(STORAGE_KEY);
 
     if (!savedSession) {
       return null;
