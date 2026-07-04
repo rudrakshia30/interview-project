@@ -40,12 +40,7 @@ function App() {
     localStorage.setItem(STORAGE_KEY,JSON.stringify(nextSession));
   }
 
-
-  async function handleStartInterview({
-    role,
-    difficulty,
-    questionCount
-  }) {
+  async function handleStartInterview({role,difficulty,questionCount}) {
     setLoading(true);
     setError("");
 
