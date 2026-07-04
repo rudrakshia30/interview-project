@@ -43,7 +43,12 @@ function App() {
   async function handleStartInterview({ role, difficulty, questionCount }) {
     setLoading(true);
     setError("");
-
+  
+  function handleChooseNewRole() {
+    localStorage.removeItem(STORAGE_KEY);
+    setSession(null);
+    setError("");
+  }
     try {
       const result = await generateQuestions({ role, difficulty, questionCount });
 
@@ -59,7 +64,7 @@ function App() {
     }
 
     catch (requestError) {
-      setError(requestError.message ||"The interview could not be started.");
+      setError(requestError.message || "The interview could not be started.");
     }
 
     finally {
@@ -98,7 +103,7 @@ function App() {
 
   if (session) {
     return (
-      <InterviewQuestions session={session} onNext={handleNextQuestion} onRestart={handleRestartInterview} />
+      <InterviewQuestions session={session} onNext={handleNextQuestion} onRestart={handleRestartInterview} onChooseNewRole={handleChooseNewRole} />
     );
   }
 
