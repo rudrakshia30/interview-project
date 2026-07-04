@@ -105,7 +105,6 @@ function App() {
     );
   }
 
-
   return (
     <RoleSelector
       onStartInterview={
@@ -116,6 +115,5 @@ function App() {
     />
   );
 }
-
 
 export default App;
