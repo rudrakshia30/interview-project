@@ -37,15 +37,15 @@ function App() {
 
   function saveSession(nextSession) {
     setSession(nextSession);
-    localStorage.setItem(STORAGE_KEY,JSON.stringify(nextSession));
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(nextSession));
   }
 
-  async function handleStartInterview({role,difficulty,questionCount}) {
+  async function handleStartInterview({ role, difficulty, questionCount }) {
     setLoading(true);
     setError("");
 
     try {
-      const result = await generateQuestions({role,difficulty,questionCount});
+      const result = await generateQuestions({ role, difficulty, questionCount });
 
       const newSession = {
         role: result.role,
@@ -77,7 +77,7 @@ function App() {
     }
 
     const lastIndex = session.questions.length - 1;
-    const nextIndex = Math.min(session.currentQuestionIndex + 1,lastIndex);
+    const nextIndex = Math.min(session.currentQuestionIndex + 1, lastIndex);
 
     saveSession({
       ...session,
@@ -101,7 +101,7 @@ function App() {
 
   if (session) {
     return (
-      <InterviewQuestions session={session} onNext={handleNextQuestion} onRestart={handleRestartInterview}/>
+      <InterviewQuestions session={session} onNext={handleNextQuestion} onRestart={handleRestartInterview} />
     );
   }
 
