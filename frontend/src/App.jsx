@@ -83,7 +83,7 @@ function App() {
       ...session,
       currentQuestionIndex: nextIndex
     });
-    
+
   }
 
   function handleRestartInterview() {
@@ -101,11 +101,7 @@ function App() {
 
   if (session) {
     return (
-      <InterviewQuestions
-        session={session}
-        onNext={handleNextQuestion}
-        onRestart={handleRestartInterview}
-      />
+      <InterviewQuestions session={session} onNext={handleNextQuestion} onRestart={handleRestartInterview}/>
     );
   }
 
