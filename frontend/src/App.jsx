@@ -68,7 +68,7 @@ function App() {
     finally {
       setLoading(false);
     }
-    
+
   }
 
   function handleNextQuestion() {
@@ -76,13 +76,8 @@ function App() {
       return;
     }
 
-    const lastIndex =
-      session.questions.length - 1;
-
-    const nextIndex = Math.min(
-      session.currentQuestionIndex + 1,
-      lastIndex
-    );
+    const lastIndex = session.questions.length - 1;
+    const nextIndex = Math.min(session.currentQuestionIndex + 1,lastIndex);
 
     saveSession({
       ...session,
