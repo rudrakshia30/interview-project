@@ -59,10 +59,7 @@ function App() {
     }
 
     catch (requestError) {
-      setError(
-        requestError.message ||
-        "The interview could not be started."
-      );
+      setError(requestError.message ||"The interview could not be started.");
     }
 
     finally {
