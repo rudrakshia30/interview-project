@@ -17,6 +17,7 @@ function readSavedSession() {
     const parsedSession = JSON.parse(savedSession);
 
     if (!Array.isArray(parsedSession.questions) || parsedSession.questions.length === 0) {
+      localStorage.removeItem(STORAGE_KEY);
       return null;
     }
 
@@ -27,7 +28,6 @@ function readSavedSession() {
     localStorage.removeItem(STORAGE_KEY);
     return null;
   }
-
 }
 
 function App() {
@@ -44,79 +44,83 @@ function App() {
     setLoading(true);
     setError("");
 
-  }
-  try {
-    const result = await generateQuestions({ role, difficulty, questionCount });
+    try {
+      const result = await generateQuestions({ role, difficulty, questionCount });
 
-    const newSession = {
-      role: result.role,
-      difficulty: result.difficulty,
-      questions: result.questions,
-      currentQuestionIndex: 0,
-      createdAt: new Date().toISOString()
+      const newSession = {
+        role: result.role,
+        difficulty: result.difficulty,
+        questions: result.questions,
+        currentQuestionIndex: 0,
+        createdAt: new Date().toISOString()
+      };
+
+      saveSession(newSession);
+    }
+
+    catch (requestError) {
+      setError(
+        requestError.message ||
+        "The interview could not be started."
+      );
+    }
+
+    finally {
+      setLoading(false);
+    }
+  }
+
+  function handleNextQuestion() {
+    if (!session) {
+      return;
+    }
+
+    const lastIndex = session.questions.length - 1;
+    const nextIndex = Math.min(session.currentQuestionIndex + 1, lastIndex);
+
+    saveSession({
+      ...session,
+      currentQuestionIndex: nextIndex
+    });
+  }
+
+  function handleRestartInterview() {
+    if (!session) {
+      return;
+    }
+
+    const restartedSession = {
+      ...session,
+      currentQuestionIndex: 0
     };
 
-    saveSession(newSession);
+    saveSession(restartedSession);
   }
 
-  catch (requestError) {
-    setError(requestError.message || "The interview could not be started.");
+  function handleChooseNewRole() {
+    localStorage.removeItem(STORAGE_KEY);
+    setSession(null);
+    setError("");
   }
 
-  finally {
-    setLoading(false);
+  if (session) {
+    return (
+      <InterviewQuestions
+        session={session}
+        onNext={handleNextQuestion}
+        onRestart={handleRestartInterview}
+        onChooseNewRole={handleChooseNewRole}
+      />
+    );
   }
 
-}
-
-function handleNextQuestion() {
-  if (!session) {
-    return;
-  }
-
-  const lastIndex = session.questions.length - 1;
-  const nextIndex = Math.min(session.currentQuestionIndex + 1, lastIndex);
-
-  saveSession({
-    ...session,
-    currentQuestionIndex: nextIndex
-  });
-
-}
-
-function handleRestartInterview() {
-  if (!session) {
-    return;
-  }
-}
-
-function handleChooseNewRole() {
-  localStorage.removeItem(STORAGE_KEY);
-  setSession(null);
-  setError("");
-}
-
-const restartedSession = {
-  ...session,
-  currentQuestionIndex: 0
-};
-
-saveSession(restartedSession);
-
-if (session) {
   return (
-    <InterviewQuestions session={session} onNext={handleNextQuestion} onRestart={handleRestartInterview} onChooseNewRole={handleChooseNewRole} />
+    <RoleSelector
+      onStartInterview={handleStartInterview}
+      loading={loading}
+      error={error}
+    />
   );
 }
-
-return (
-  <RoleSelector
-    onStartInterview={
-      handleStartInterview
-    }
-    loading={loading}
-    error={error}
-  />
-);
 
 export default App;
