@@ -2,7 +2,7 @@ function InterviewQuestions({ session, onNext, onRestart }) {
     const currentIndex = session.currentQuestionIndex;
     const currentQuestion = session.questions[currentIndex];
     const isFirstQuestion = (currentIndex === 0);
-
+    const isLastQuestion = (currentIndex === session.questions.length - 1);
     return (
         <main className="page-container">
             <section className="question-header">
