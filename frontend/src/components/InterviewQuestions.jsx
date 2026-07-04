@@ -1,4 +1,4 @@
-function InterviewQuestions({ session, onNext, onRestart }) {
+function InterviewQuestions({ session, onNext, onRestart,onChooseNewRole }) {
     const currentIndex = session.currentQuestionIndex;
     const currentQuestion = session.questions[currentIndex];
     const isFirstQuestion = (currentIndex === 0);
@@ -11,7 +11,11 @@ function InterviewQuestions({ session, onNext, onRestart }) {
                     <h1>Practice interview</h1>
                     <p className="subtitle">Difficulty: {session.difficulty}</p>
                 </div>
-                <button type="button" className="secondary-button" onClick={onRestart}>Restart Interview</button>
+
+                <div>
+                    <button type="button" className="secondary-button" onClick={onRestart}>Restart Interview</button>
+                    <button type="button" className="secondary-button" onClick={onChooseNewRole}>Choose New Role</button>
+                </div>
             </section>
 
             <section className="question-panel">
@@ -31,7 +35,11 @@ function InterviewQuestions({ session, onNext, onRestart }) {
 
                 <div className="navigation-buttons">
                     {isLastQuestion ? (
-                        <button type="button" className="primary-button" onClick={onRestart} > Restart Interview </button>
+                        <>
+                            <button type="button" className="primary-button" onClick={onRestart} > Restart Interview </button>
+                            <button type="button" className="secondary-button" onClick={onChooseNewRole} > Choose New Role </button>
+                        </>
+                        
                     ) : (
                         <button type="button" className="primary-button" onClick={onNext}>Next question </button>
                     )}
