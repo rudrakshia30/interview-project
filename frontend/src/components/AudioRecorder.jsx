@@ -122,10 +122,10 @@ function AudioRecorder({existingAnswer,onRecordingReady,onDeleteRecording,onReco
 
     const recordingData = {
       blob: audioBlob,
-      audioUrl: audioUrl,
+      audioUrl,
       mimeType: finalMimeType,
       duration: finalDuration,
-      extension: extension
+      extension
     };
 
     onRecordingReady(recordingData);
