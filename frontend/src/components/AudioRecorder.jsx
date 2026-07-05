@@ -132,9 +132,7 @@ function AudioRecorder({existingAnswer,onRecordingReady,onDeleteRecording,onReco
   }
 
 
-  function handleRecordingError(
-    recordingError
-  ) {
+  function handleRecordingError(recordingError) {
     stopTimer();
     stopMicrophone();
     updateRecordingState(false);
