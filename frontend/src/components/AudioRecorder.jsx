@@ -22,10 +22,7 @@ function getAudioExtension(mimeType) {
   return "webm";
 }
 
-function formatDuration(totalSeconds) {
-  const minutes = Math.floor(
-    totalSeconds / 60
-  );
+function formatDuration(totalSeconds) {const minutes = Math.floor(totalSeconds / 60);
 
   const seconds =
     totalSeconds % 60;
