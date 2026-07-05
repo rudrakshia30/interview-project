@@ -62,15 +62,11 @@ function AudioRecorder({existingAnswer,onRecordingReady,onDeleteRecording,onReco
   }
 
 
-  function updateRecordingState(
-    recordingState
-  ) {
+  function updateRecordingState(recordingState) {
     setIsRecording(recordingState);
 
     if (onRecordingStateChange) {
-      onRecordingStateChange(
-        recordingState
-      );
+      onRecordingStateChange(recordingState);
     }
   }
 
