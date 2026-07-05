@@ -8,18 +8,13 @@ function getSupportedMimeType() {
 
   const possibleAudioTypes = ["audio/webm;codecs=opus","audio/webm","audio/ogg;codecs=opus","audio/ogg","audio/mp4"];
 
-  const supportedAudioType =
-    possibleAudioTypes.find(
-      (audioType) => {
-        return MediaRecorder.isTypeSupported(
-          audioType
-        );
+  const supportedAudioType =possibleAudioTypes.find((audioType) => {
+        return MediaRecorder.isTypeSupported(audioType);
       }
     );
 
   return supportedAudioType || "";
 }
-
 
 function getAudioExtension(mimeType) {
   if (mimeType.includes("ogg")) {
