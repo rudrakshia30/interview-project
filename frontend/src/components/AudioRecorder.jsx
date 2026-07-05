@@ -2,10 +2,7 @@ import {useEffect,useRef,useState} from "react";
 import "./AudioRecorder.css";
 
 function getSupportedMimeType() {
-  if (
-    !window.MediaRecorder ||
-    !MediaRecorder.isTypeSupported
-  ) {
+  if (!window.MediaRecorder ||!MediaRecorder.isTypeSupported) {
     return "";
   }
 
