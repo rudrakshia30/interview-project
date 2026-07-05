@@ -18,11 +18,7 @@ function getSupportedMimeType() {
 
 function getAudioExtension(mimeType) {
   if (mimeType.includes("ogg")) {return "ogg";}
-
-  if (mimeType.includes("mp4")) {
-    return "m4a";
-  }
-
+  if (mimeType.includes("mp4")) {return "m4a";}
   return "webm";
 }
 
