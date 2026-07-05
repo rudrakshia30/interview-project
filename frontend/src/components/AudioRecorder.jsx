@@ -199,26 +199,17 @@ function AudioRecorder({existingAnswer,onRecordingReady,onDeleteRecording,onReco
     recorder.stop();
   }
 
-
   useEffect(() => {
     return () => {
       stopTimer();
 
-      const recorder =
-        mediaRecorderRef.current;
+      const recorder = mediaRecorderRef.current;
 
-      if (
-        recorder &&
-        recorder.state !== "inactive"
-      ) {
-        recorder.ondataavailable =
-          null;
-
+      if (recorder && recorder.state !== "inactive") {
+        recorder.ondataavailable = null;
         recorder.onstop = null;
-
         recorder.stop();
       }
-
       stopMicrophone();
     };
   }, []);
