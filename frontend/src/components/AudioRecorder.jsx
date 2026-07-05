@@ -184,18 +184,15 @@ function AudioRecorder({existingAnswer,onRecordingReady,onDeleteRecording,onReco
       recorder.start(250);
     }
 
-    catch (recordingError) {handleRecordingError(recordingError);}
+    catch (recordingError) {
+        handleRecordingError(recordingError);
+    }
   }
 
-
   function stopRecording() {
-    const recorder =
-      mediaRecorderRef.current;
+    const recorder = mediaRecorderRef.current;
 
-    if (
-      !recorder ||
-      recorder.state === "inactive"
-    ) {
+    if (!recorder ||recorder.state === "inactive") {
       return;
     }
 
