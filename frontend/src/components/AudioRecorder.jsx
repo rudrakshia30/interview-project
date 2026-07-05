@@ -70,30 +70,17 @@ function AudioRecorder({existingAnswer,onRecordingReady,onDeleteRecording,onReco
     }
   }
 
-
   function startTimer() {
-    recordingStartedAtRef.current =
-      Date.now();
 
+    recordingStartedAtRef.current =Date.now();
     setRecordingSeconds(0);
 
     timerRef.current = setInterval(
       () => {
-        const elapsedMilliseconds =
-          Date.now() -
-          recordingStartedAtRef.current;
-
-        const elapsedSeconds =
-          Math.floor(
-            elapsedMilliseconds / 1000
-          );
-
-        setRecordingSeconds(
-          elapsedSeconds
-        );
-      },
-      250
-    );
+        const elapsedMilliseconds = Date.now() - recordingStartedAtRef.current;
+        const elapsedSeconds = Math.floor(elapsedMilliseconds / 1000);
+        setRecordingSeconds(elapsedSeconds);
+      },250);
   }
 
 
