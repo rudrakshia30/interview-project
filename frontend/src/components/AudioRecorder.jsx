@@ -184,9 +184,7 @@ function AudioRecorder({existingAnswer,onRecordingReady,onDeleteRecording,onReco
       recorder.start(250);
     }
 
-    catch (recordingError) {
-      handleRecordingError(recordingError);
-    }
+    catch (recordingError) {handleRecordingError(recordingError);}
   }
 
 
