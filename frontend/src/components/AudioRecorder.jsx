@@ -137,42 +137,22 @@ function AudioRecorder({existingAnswer,onRecordingReady,onDeleteRecording,onReco
     stopMicrophone();
     updateRecordingState(false);
 
-    if (
-      recordingError.name ===
-      "NotAllowedError"
-    ) {
-      setError(
-        "Microphone permission was denied. Allow microphone access and try again."
-      );
-
+    if (recordingError.name ==="NotAllowedError") {
+      setError("Microphone permission was denied. Allow microphone access and try again.");
       return;
     }
 
-    if (
-      recordingError.name ===
-      "NotFoundError"
-    ) {
-      setError(
-        "No microphone was found on this device."
-      );
-
+    if (recordingError.name ==="NotFoundError") {
+      setError("No microphone was found on this device.");
       return;
     }
 
-    if (
-      recordingError.name ===
-      "NotReadableError"
-    ) {
-      setError(
-        "The microphone is being used by another application."
-      );
-
+    if (recordingError.name === "NotReadableError") {
+      setError("The microphone is being used by another application.");
       return;
     }
 
-    setError(
-      "The audio recording could not be started."
-    );
+    setError("The audio recording could not be started.");
   }
 
 
