@@ -118,10 +118,7 @@ function AudioRecorder({existingAnswer,onRecordingReady,onDeleteRecording,onReco
 
     const audioUrl = URL.createObjectURL(audioBlob);
 
-    const extension =
-      getAudioExtension(
-        finalMimeType
-      );
+    const extension = getAudioExtension(finalMimeType);
 
     const recordingData = {
       blob: audioBlob,
