@@ -155,59 +155,28 @@ function AudioRecorder({existingAnswer,onRecordingReady,onDeleteRecording,onReco
     setError("The audio recording could not be started.");
   }
 
-
   async function startRecording() {
     try {
       setError("");
 
-      if (
-        !navigator.mediaDevices ||
-        !navigator.mediaDevices
-          .getUserMedia ||
-        !window.MediaRecorder
-      ) {
-        setError(
-          "Audio recording is not supported in this browser."
-        );
-
+       if ( !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia || !window.MediaRecorder) {
+        setError("Audio recording is not supported in this browser.");
         return;
       }
 
-      const microphoneStream =
-        await navigator.mediaDevices
-          .getUserMedia({
-            audio: true
-          });
+      const microphoneStream = await navigator.mediaDevices.getUserMedia({audio: true});
 
-      mediaStreamRef.current =
-        microphoneStream;
-
+      mediaStreamRef.current = microphoneStream;
       audioChunksRef.current = [];
+      const supportedMimeType =getSupportedMimeType();
 
-      const supportedMimeType =
-        getSupportedMimeType();
+      const recorder =supportedMimeType? new MediaRecorder(microphoneStream,{mimeType:supportedMimeType}): new MediaRecorder(microphoneStream);
 
-      const recorder =
-        supportedMimeType
-          ? new MediaRecorder(
-              microphoneStream,
-              {
-                mimeType:
-                  supportedMimeType
-              }
-            )
-          : new MediaRecorder(
-              microphoneStream
-            );
+      mediaRecorderRef.current = recorder;
 
-      mediaRecorderRef.current =
-        recorder;
+      recorder.ondataavailable =handleAudioData;
 
-      recorder.ondataavailable =
-        handleAudioData;
-
-      recorder.onstop =
-        handleRecordingStopped;
+      recorder.onstop = handleRecordingStopped;
 
       updateRecordingState(true);
       startTimer();
@@ -216,9 +185,7 @@ function AudioRecorder({existingAnswer,onRecordingReady,onDeleteRecording,onReco
     }
 
     catch (recordingError) {
-      handleRecordingError(
-        recordingError
-      );
+      handleRecordingError(recordingError);
     }
   }
 
