@@ -83,30 +83,23 @@ function AudioRecorder({existingAnswer,onRecordingReady,onDeleteRecording,onReco
       },250);
   }
 
-
   function handleAudioData(event) {
     if (event.data.size > 0) {
-      audioChunksRef.current.push(
-        event.data
-      );
+      audioChunksRef.current.push(event.data);
     }
   }
-
 
   function handleRecordingStopped() {
     stopTimer();
     stopMicrophone();
     updateRecordingState(false);
 
-    const recorder =
-      mediaRecorderRef.current;
+    const recorder = mediaRecorderRef.current;
 
-    const finalMimeType =
-      recorder?.mimeType ||
-      "audio/webm";
+    const finalMimeType = recorder?.mimeType || "audio/webm";
 
     const audioBlob = new Blob(
-      audioChunksRef.current,
+        audioChunksRef.current,
       {
         type: finalMimeType
       }
@@ -115,29 +108,15 @@ function AudioRecorder({existingAnswer,onRecordingReady,onDeleteRecording,onReco
     audioChunksRef.current = [];
 
     if (audioBlob.size === 0) {
-      setError(
-        "No audio was recorded. Please try again."
-      );
-
+      setError("No audio was recorded. Please try again.");
       return;
     }
 
-    const elapsedMilliseconds =
-      recordingStartedAtRef.current
-        ? Date.now() -
-          recordingStartedAtRef.current
-        : 0;
+    const elapsedMilliseconds =recordingStartedAtRef.current? Date.now() -recordingStartedAtRef.current: 0;
 
-    const finalDuration =
-      Math.max(
-        1,
-        Math.round(
-          elapsedMilliseconds / 1000
-        )
-      );
+    const finalDuration = Math.max(1,Math.round(elapsedMilliseconds / 1000));
 
-    const audioUrl =
-      URL.createObjectURL(audioBlob);
+    const audioUrl = URL.createObjectURL(audioBlob);
 
     const extension =
       getAudioExtension(
