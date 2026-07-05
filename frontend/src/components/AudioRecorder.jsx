@@ -2,17 +2,11 @@ import {useEffect,useRef,useState} from "react";
 import "./AudioRecorder.css";
 
 function getSupportedMimeType() {
-  if (!window.MediaRecorder ||!MediaRecorder.isTypeSupported) {
+  if (!window.MediaRecorder || !MediaRecorder.isTypeSupported) {
     return "";
   }
 
-  const possibleAudioTypes = [
-    "audio/webm;codecs=opus",
-    "audio/webm",
-    "audio/ogg;codecs=opus",
-    "audio/ogg",
-    "audio/mp4"
-  ];
+  const possibleAudioTypes = ["audio/webm;codecs=opus","audio/webm","audio/ogg;codecs=opus","audio/ogg","audio/mp4"];
 
   const supportedAudioType =
     possibleAudioTypes.find(
