@@ -214,79 +214,41 @@ function AudioRecorder({existingAnswer,onRecordingReady,onDeleteRecording,onReco
     };
   }, []);
 
-
   return (
     <section className="audio-recorder">
       <div className="audio-recorder-heading">
         <div>
-          <p className="audio-recorder-label">
-            Your answer
-          </p>
-
-          <h3>
-            Record your response
-          </h3>
+          <p className="audio-recorder-label">Your answer</p>
+          <h3>Record your response</h3>
         </div>
 
         {isRecording && (
           <div className="recording-status">
             <span className="recording-dot" />
-
-            <span>
-              Recording
-            </span>
+            <span>Recording</span>
           </div>
         )}
       </div>
 
-
       {error && (
-        <p className="recording-error">
-          {error}
-        </p>
+        <p className="recording-error">{error}</p>
       )}
-
 
       {isRecording && (
         <div className="active-recording">
-          <p>
-            Speak clearly into your
-            microphone.
-          </p>
-
-          <strong className="recording-time">
-            {
-              formatDuration(
-                recordingSeconds
-              )
-            }
-          </strong>
+          <p>Speak clearly into your microphone.</p>
+          <strong className="recording-time">{formatDuration(recordingSeconds)}</strong>
         </div>
       )}
-
 
       {!isRecording &&
         existingAnswer && (
           <div className="audio-preview">
-            <p>
-              Your answer has been
-              recorded.
-            </p>
-
-            <audio
-              controls
-              src={
-                existingAnswer.audioUrl
-              }
-            />
+            <p>Your answer has been recorded.</p>
+            <audio controls src={ existingAnswer.audioUrl }/>
 
             <span className="audio-duration">
-              Duration:{" "}
-              {
-                formatDuration(
-                  existingAnswer.duration
-                )
-              }
+              Duration:{" "}{formatDuration(existingAnswer.duration)}
             </span>
           </div>
         )}
@@ -334,9 +296,7 @@ function AudioRecorder({existingAnswer,onRecordingReady,onDeleteRecording,onReco
               <button
                 type="button"
                 className="record-button"
-                onClick={
-                  startRecording
-                }
+                onClick={startRecording}
               >
                 Record Again
               </button>
@@ -344,9 +304,7 @@ function AudioRecorder({existingAnswer,onRecordingReady,onDeleteRecording,onReco
               <button
                 type="button"
                 className="delete-recording-button"
-                onClick={
-                  onDeleteRecording
-                }
+                onClick={onDeleteRecording}
               >
                 Delete Answer
               </button>
