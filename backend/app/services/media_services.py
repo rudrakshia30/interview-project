@@ -40,7 +40,27 @@ def extract_compressed_audio(video_path: Path,audio_path: Path) -> None:
     if not ffmpeg_path:
         raise MediaProcessingError("FFmpeg was not found. Install FFmpeg and add it to PATH.")
 
-    command = [ffmpeg_path,"-nostdin","-hide_banner","-loglevel","error","-y","-i",str(video_path),"-map","0:a:0","-vn","-ac","1","-ar""16000","-c:a","libmp3lame","-b:a","32k",str(audio_path)]
+    command = [ffmpeg_path,
+               "-nostdin",
+               "-hide_banner",
+               "-loglevel",
+               "error",
+               "-y",
+               "-i",
+               str(video_path),
+               "-map",
+               "0:a:0",
+               "-vn",
+               "-ac",
+               "1",
+               "-ar",
+               "16000",
+               "-c:a",
+               "libmp3lame",
+               "-b:a",
+               "32k",
+               str(audio_path)
+               ]
 
     result = subprocess.run(command,capture_output=True,text=True,check=False)
 
