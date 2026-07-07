@@ -32,3 +32,23 @@ async def save_uploaded_video(uploaded_video: UploadFile,destination: Path) -> i
         raise MediaProcessingError("The uploaded video is empty.")
 
     return total_size
+
+def extract_compressed_audio(video_path: Path,audio_path: Path) -> None:
+    
+    ffmpeg_path = shutil.which("ffmpeg")
+
+    if not ffmpeg_path:
+        raise MediaProcessingError("FFmpeg was not found. Install FFmpeg and add it to PATH.")
+
+    command = [ffmpeg_path,"-nostdin","-hide_banner","-loglevel","error","-y","-i",str(video_path),"-map","0:a:0","-vn","-ac","1","-ar""16000","-c:a","libmp3lame","-b:a","32k",str(audio_path)]
+
+    result = subprocess.run(command,capture_output=True,text=True,check=False)
+
+    if result.returncode != 0:
+        ffmpeg_error = result.stderr.strip()
+
+        raise MediaProcessingError(f"Audio could not be extracted from the video. FFmpeg error: {ffmpeg_error or 'Unknown error.'} ")
+
+    if (not audio_path.exists() or audio_path.stat().st_size == 0 ):
+    
+        raise MediaProcessingError("FFmpeg did not create a valid audio file.")
