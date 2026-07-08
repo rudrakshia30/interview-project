@@ -1,8 +1,13 @@
-function InterviewQuestions({ session, onNext, onRestart,onChooseNewRole }) {
+import VideoRecorder from "./VideoRecorder";
+
+function InterviewQuestions({ session, onNext, onRestart,onChooseNewRole,recordings,onRecordingChange }) {
     const currentIndex = session.currentQuestionIndex;
     const currentQuestion = session.questions[currentIndex];
     const isFirstQuestion = (currentIndex === 0);
     const isLastQuestion = (currentIndex === session.questions.length - 1);
+    const currentRecording = recordings[currentIndex] || null;
+    const canContinue = Boolean(currentRecording?.isProcessed) && !currentRecording?.isProcessing;
+
     return (
         <main className="page-container">
             <section className="question-header">
@@ -33,15 +38,27 @@ function InterviewQuestions({ session, onNext, onRestart,onChooseNewRole }) {
                     <h2>{currentQuestion.question}</h2>
                 </article>
 
+                <VideoRecorder
+                    key={currentIndex}
+                    questionIndex={currentIndex}
+                    question={currentQuestion.question}
+                    savedRecording={currentRecording}
+                    onRecordingChange={onRecordingChange}
+                />
+
                 <div className="navigation-buttons">
+                    {!canContinue && (
+                        <p className="navigation-help">Record and process your answer before continuing.</p>
+                    )}
+
                     {isLastQuestion ? (
                         <>
-                            <button type="button" className="primary-button" onClick={onRestart} > Restart Interview </button>
-                            <button type="button" className="secondary-button" onClick={onChooseNewRole} > Choose New Role </button>
+                            <button type="button" className="primary-button" onClick={onRestart} disabled={!canContinue}> Restart Interview </button>
+                            <button type="button" className="secondary-button" onClick={onChooseNewRole} disabled={!canContinue}> Choose New Role </button>
                         </>
                         
                     ) : (
-                        <button type="button" className="primary-button" onClick={onNext}>Next question </button>
+                        <button type="button" className="primary-button" onClick={onNext} disabled={!canContinue}>Next question </button>
                     )}
                 </div>
             </section>
