@@ -1,5 +1,5 @@
 import VideoRecorder from "./VideoRecorder";
-
+import "./InterviewQuestions.css";
 function InterviewQuestions({ session, onNext, onRestart,onChooseNewRole,recordings,onRecordingChange }) {
     const currentIndex = session.currentQuestionIndex;
     const currentQuestion = session.questions[currentIndex];
