@@ -33,3 +33,41 @@ export async function generateQuestions({role,difficulty,questionCount}) {
 
   return data;
 }
+
+export async function processAnswerVideo({videoBlob,fileName,question,questionIndex}) {
+  const formData = new FormData();
+
+  formData.append("video",videoBlob,fileName);
+  formData.append("question",question);
+  formData.append("question_index",String(questionIndex));
+
+  const response = await fetch(
+    `${
+      import.meta.env.VITE_API_BASE_URL
+      || "http://127.0.0.1:8000"
+    }/api/video/process-answer`,
+    {
+      method: "POST",
+      body: formData
+    }
+  );
+
+  let result;
+
+  try {
+    result = await response.json();
+  }
+
+  catch {
+    result = {};
+  }
+
+  if (!response.ok) {
+    throw new Error(
+      result.detail
+      || "The video could not be processed."
+    );
+  }
+
+  return result;
+}
