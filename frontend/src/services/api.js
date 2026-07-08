@@ -41,11 +41,7 @@ export async function processAnswerVideo({videoBlob,fileName,question,questionIn
   formData.append("question",question);
   formData.append("question_index",String(questionIndex));
 
-  const response = await fetch(
-    `${
-      import.meta.env.VITE_API_BASE_URL
-      || "http://127.0.0.1:8000"
-    }/api/video/process-answer`,
+  const response = await fetch(`${import.meta.env.VITE_API_BASE_URL|| "http://127.0.0.1:8000"}/api/video/process-answer`,
     {
       method: "POST",
       body: formData
