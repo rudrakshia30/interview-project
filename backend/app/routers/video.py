@@ -38,19 +38,9 @@ async def process_answer_video(
 
             await run_in_threadpool(extract_compressed_audio,video_path,audio_path)
 
-            audio_size_bytes = (
-                audio_path
-                .stat()
-                .st_size
-            )
+            audio_size_bytes = (audio_path.stat().st_size)
 
-            transcript = (
-                await run_in_threadpool(
-                    transcribe_answer_audio,
-                    audio_path,
-                    question
-                )
-            )
+            transcript = (await run_in_threadpool(transcribe_answer_audio,audio_path,question))
 
             return {
                 "question_index":
