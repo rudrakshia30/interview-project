@@ -1,8 +1,10 @@
-import { useState,useRef,useState } from "react";
+import { useState,useRef,useEffect } from "react";
 import RoleSelector from "./components/RoleSelector";
 import InterviewQuestions from "./components/InterviewQuestions";
 import { generateQuestions } from "./services/api";
 import "./App.css";
+import InterviewComplete from "./components/InterviewComplete";
+
 
 const STORAGE_KEY = "interview_v1_session";
 
