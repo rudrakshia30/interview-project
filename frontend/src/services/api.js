@@ -59,10 +59,7 @@ export async function processAnswerVideo({videoBlob,fileName,question,questionIn
   }
 
   if (!response.ok) {
-    throw new Error(
-      result.detail
-      || "The video could not be processed."
-    );
+    throw new Error(result.detail|| "The video could not be processed.");
   }
 
   return result;
