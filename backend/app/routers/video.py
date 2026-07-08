@@ -18,12 +18,8 @@ async def process_answer_video(
 
     video_extension = (Path(original_filename).suffix.lower())
 
-    if (
-        video_extension
-        not in ALLOWED_VIDEO_EXTENSIONS
-    ):
-        raise HTTPException(
-            status_code=400,
+    if (video_extension not in ALLOWED_VIDEO_EXTENSIONS):
+        raise HTTPException(status_code=400,
             detail=(
                 "Unsupported video format. "
                 "Use WebM, MP4, MOV, M4V, "
