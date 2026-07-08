@@ -36,11 +36,7 @@ async def process_answer_video(
 
             video_size_bytes = (await save_uploaded_video(video,video_path))
 
-            await run_in_threadpool(
-                extract_compressed_audio,
-                video_path,
-                audio_path
-            )
+            await run_in_threadpool(extract_compressed_audio,video_path,audio_path)
 
             audio_size_bytes = (
                 audio_path
