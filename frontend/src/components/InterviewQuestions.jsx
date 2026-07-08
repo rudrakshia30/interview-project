@@ -1,6 +1,6 @@
 import VideoRecorder from "./VideoRecorder";
 import "./InterviewQuestions.css";
-function InterviewQuestions({ session, onNext, onRestart,onChooseNewRole,recordings,onRecordingChange }) {
+function InterviewQuestions({ session, onNext, onRestart, onChooseNewRole, recordings, onRecordingChange }) {
     const currentIndex = session.currentQuestionIndex;
     const currentQuestion = session.questions[currentIndex];
     const isFirstQuestion = (currentIndex === 0);
@@ -30,7 +30,7 @@ function InterviewQuestions({ session, onNext, onRestart,onChooseNewRole,recordi
                 </div>
 
                 <div className="progress-track">
-                    <div className="progress-fill" style={{width: `${((currentIndex + 1) /session.questions.length)*100}%`}}/>
+                    <div className="progress-fill" style={{ width: `${((currentIndex + 1) / session.questions.length) * 100}%` }} />
                 </div>
 
                 <article className="question-card">
@@ -53,12 +53,17 @@ function InterviewQuestions({ session, onNext, onRestart,onChooseNewRole,recordi
 
                     {isLastQuestion ? (
                         <>
-                            <button type="button" className="primary-button" onClick={onRestart} disabled={!canContinue}> Restart Interview </button>
-                            <button type="button" className="secondary-button" onClick={onChooseNewRole} disabled={!canContinue}> Choose New Role </button>
+                            <button type="button" className="primary-button" onClick={onNext} disabled={!canContinue}>Finish Interview</button>
+                            <button type="button" className="secondary-button" onClick={onRestart}>Restart Interview</button>
+                            <button type="button" className="secondary-button" onClick={onChooseNewRole}>Choose New Role</button>
                         </>
-                        
+
                     ) : (
-                        <button type="button" className="primary-button" onClick={onNext} disabled={!canContinue}>Next question </button>
+                        <>
+                            <button type="button" className="primary-button" onClick={onNext} disabled={!canContinue}>Next question </button>
+                            <button type="button" className="secondary-button" onClick={onRestart}>Restart Interview</button>
+                            <button type="button" className="secondary-button" onClick={onChooseNewRole}>Choose New Role</button>
+                        </>
                     )}
                 </div>
             </section>
