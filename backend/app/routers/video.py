@@ -43,26 +43,13 @@ async def process_answer_video(
             transcript = (await run_in_threadpool(transcribe_answer_audio,audio_path,question))
 
             return {
-                "question_index":
-                    question_index,
-
-                "transcript":
-                    transcript,
-
-                "video_size_bytes":
-                    video_size_bytes,
-
-                "audio_size_bytes":
-                    audio_size_bytes,
-
-                "audio_format":
-                    "mp3",
-
-                "audio_sample_rate":
-                    16000,
-
-                "audio_bitrate":
-                    "32k"
+                "question_index":question_index,
+                "transcript":transcript,
+                "video_size_bytes":video_size_bytes,
+                "audio_size_bytes":audio_size_bytes,
+                "audio_format":"mp3",
+                "audio_sample_rate":16000,
+                "audio_bitrate":"32k"
             }
 
     except (
