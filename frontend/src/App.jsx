@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState,useRef,useState } from "react";
 import RoleSelector from "./components/RoleSelector";
 import InterviewQuestions from "./components/InterviewQuestions";
 import { generateQuestions } from "./services/api";
