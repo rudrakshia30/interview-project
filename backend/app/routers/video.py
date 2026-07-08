@@ -72,3 +72,4 @@ async def process_answer_video(
 
     finally:
         await video.close()
+        
