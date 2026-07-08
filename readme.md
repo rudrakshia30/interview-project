@@ -145,11 +145,6 @@ Charts and weak areas are displayed
 | Technology | Use |
 |-----------|-----|
 | OpenCV | Webcam frame processing |
-| MediaPipe | Face landmark detection |
-| Face Detection | Checking if face is visible |
-| Eye Tracking | Estimating eye contact |
-| Head Pose Estimation | Detecting head movement |
-| Frame Analysis | Analyzing confidence and nervousness indicators |
 
 ---
 
