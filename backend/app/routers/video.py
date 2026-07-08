@@ -28,37 +28,13 @@ async def process_answer_video(
         )
 
     try:
-        with TemporaryDirectory(
-            prefix="interview-answer-"
-        ) as temporary_directory:
-            temporary_path = Path(
-                temporary_directory
-            )
+        with TemporaryDirectory(prefix="interview-answer-") as temporary_directory:
+            temporary_path = Path(temporary_directory)
+            video_path = (temporary_path/(f"answer-{question_index}{video_extension}"))
 
-            video_path = (
-                temporary_path
-                / (
-                    f"answer-"
-                    f"{question_index}"
-                    f"{video_extension}"
-                )
-            )
+            audio_path = (temporary_path/(f"answer-{question_index}.mp3"))
 
-            audio_path = (
-                temporary_path
-                / (
-                    f"answer-"
-                    f"{question_index}"
-                    ".mp3"
-                )
-            )
-
-            video_size_bytes = (
-                await save_uploaded_video(
-                    video,
-                    video_path
-                )
-            )
+            video_size_bytes = (await save_uploaded_video(video,video_path))
 
             await run_in_threadpool(
                 extract_compressed_audio,
