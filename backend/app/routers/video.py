@@ -16,11 +16,7 @@ async def process_answer_video(
 
     original_filename = (video.filename or "answer.webm")
 
-    video_extension = (
-        Path(original_filename)
-        .suffix
-        .lower()
-    )
+    video_extension = (Path(original_filename).suffix.lower())
 
     if (
         video_extension
