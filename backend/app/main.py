@@ -35,6 +35,7 @@ app.add_middleware(
 )
 
 app.include_router(questions_router)
+app.include_router(video.router)
 
 @app.get("/")
 def root():
