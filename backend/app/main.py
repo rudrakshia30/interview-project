@@ -9,10 +9,7 @@ load_dotenv()
 
 app = FastAPI(
     title="AI Interview API",
-    description=(
-        "Backend API for generating "
-        "role-specific interview questions."
-    ),
+    description=("Backend API for generating role-specific interview questions."),
     version="1.0.0"
 )
 
