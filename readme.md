@@ -420,6 +420,7 @@ Instead of only showing questions, the app will gradually support answer recordi
 
 ---
 
+
 ## 📊 Future Dashboard Ideas
 
 The final dashboard may include:
