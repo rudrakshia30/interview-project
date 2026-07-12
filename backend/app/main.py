@@ -30,7 +30,7 @@ app.include_router(video.router)
 @app.get("/")
 
 def root():
-    return {"message": "AI Interview API is running",}
+    return {"message": "AI Interview API is running"}
 
 @app.get("/health")
 def health_check():
