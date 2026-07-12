@@ -411,6 +411,7 @@ dist/
 
 ---
 
+
 ## 🎯 Main Goal
 
 The main goal of this project is to create a complete AI interview preparation platform that helps users practice interviews in a realistic way.
