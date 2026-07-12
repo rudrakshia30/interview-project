@@ -28,6 +28,7 @@ app.include_router(questions_router)
 app.include_router(video.router)
 
 @app.get("/")
+
 def root():
     return {
         "message": "AI Interview API is running",
