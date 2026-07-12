@@ -251,6 +251,7 @@ python -m venv venv
 
 ### 4. Activate Virtual Environment
 
+
 For Windows:
 
 ```bash
