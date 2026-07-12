@@ -272,6 +272,7 @@ pip install -r requirements.txt
 
 ### 6. Create `.env` File
 
+
 Create a `.env` file inside the `backend` folder.
 
 ```env
