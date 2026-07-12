@@ -13,10 +13,7 @@ app = FastAPI(
     version="1.0.0"
 )
 
-frontend_origin = os.getenv(
-    "FRONTEND_ORIGIN",
-    "http://localhost:5173"
-)
+frontend_origin = os.getenv("FRONTEND_ORIGIN","http://localhost:5173")
 
 allowed_origins = [
     frontend_origin,
