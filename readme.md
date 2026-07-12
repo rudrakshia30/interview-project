@@ -465,6 +465,7 @@ AI gives feedback like:
 
 ---
 
+
 ## 🧩 Why Local Storage?
 
 This project currently uses local storage because:
