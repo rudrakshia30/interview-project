@@ -5,6 +5,7 @@ from app.services.groq_services import generate_interview_questions
 router = APIRouter(prefix="/api/questions", tags=["Interview Questions"])
 
 @router.post("/generate",response_model=QuestionGenerationResponse)
+
 def create_interview_questions(request: QuestionGenerationRequest):
     
     try:
