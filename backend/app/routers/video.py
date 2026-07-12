@@ -28,6 +28,7 @@ async def process_answer_video(
         )
 
     try:
+        
         with TemporaryDirectory(prefix="interview-answer-") as temporary_directory:
             temporary_path = Path(temporary_directory)
             video_path = (temporary_path/(f"answer-{question_index}{video_extension}"))
