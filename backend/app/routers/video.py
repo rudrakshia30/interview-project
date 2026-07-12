@@ -8,6 +8,7 @@ from app.services.transcript_services import (TranscriptionError,transcribe_answ
 router = APIRouter(prefix="/api/video",tags=["Video answers"])
 
 @router.post("/process-answer")
+
 async def process_answer_video(
     video: UploadFile = File(...),
     question: str = Form(...),
@@ -28,7 +29,7 @@ async def process_answer_video(
         )
 
     try:
-        
+
         with TemporaryDirectory(prefix="interview-answer-") as temporary_directory:
             temporary_path = Path(temporary_directory)
             video_path = (temporary_path/(f"answer-{question_index}{video_extension}"))
