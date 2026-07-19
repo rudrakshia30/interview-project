@@ -51,6 +51,7 @@ export async function processAnswerVideo({videoBlob,fileName,question,questionIn
   let result;
 
   try {
+    
     result = await response.json();
   }
 
