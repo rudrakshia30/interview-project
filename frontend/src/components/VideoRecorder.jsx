@@ -425,5 +425,4 @@ function VideoRecorder({questionIndex,question,savedRecording,onRecordingChange}
     </section>
   );
 }
-
 export default VideoRecorder;
