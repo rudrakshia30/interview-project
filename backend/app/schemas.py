@@ -23,3 +23,4 @@ class QuestionGenerationResponse(BaseModel):
     role: str
     difficulty: str
     questions: list[InterviewQuestion]
+    
