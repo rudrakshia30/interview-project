@@ -15,6 +15,7 @@ function readSavedSession() {
       return null;
     }
 
+    
     const parsedSession = JSON.parse(savedSession);
 
     if (!Array.isArray(parsedSession.questions) || parsedSession.questions.length === 0) {
