@@ -74,5 +74,4 @@ async def process_answer_video(
         ) from error
 
     finally:
-        await video.close()
-        
+        await video.close()     
