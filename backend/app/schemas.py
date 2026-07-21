@@ -12,12 +12,10 @@ class QuestionGenerationRequest(BaseModel):
         le=10
     )
 
-
 class InterviewQuestion(BaseModel):
     id: int
     question: str
     category: str
-
 
 class QuestionGenerationResponse(BaseModel):
     role: str
