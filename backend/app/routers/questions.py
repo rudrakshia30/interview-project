@@ -18,7 +18,6 @@ def create_interview_questions(request: QuestionGenerationRequest):
         }
 
     except RuntimeError as error:
-        
         raise HTTPException(
             status_code=502, detail=str(error)
         ) from error
